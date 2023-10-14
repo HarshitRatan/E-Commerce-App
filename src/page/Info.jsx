@@ -7,13 +7,22 @@ import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import { Container } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
+import { useSelector } from "react-redux";
 
 const Info = () => {
   const id = useParams().id;
   const navigate = useNavigate();
-  React.useEffect(() => {
-    console.log("id ::", id);
-  }, [id]);
+  const allProduct = useSelector((state) => state.allProducts);
+  const [currentProduct, setCurrentProduct] = React.useState({});
+
+  React.useLayoutEffect(() => {
+    const currentProductId = parseInt(id);
+    const currentProductArray = allProduct.data.filter(
+      (currentProduct) => currentProduct.id === currentProductId
+    );
+    setCurrentProduct(currentProductArray[0]);
+  }, [id, allProduct]);
+
   return (
     <Box sx={{ marginTop: "25px", marginBottom: "50px" }}>
       <Grid
@@ -96,7 +105,7 @@ const Info = () => {
           >
             <CardMedia
               component="img"
-              image="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=242&h=242&fit=crop&auto=format"
+              image={currentProduct.image}
               alt="car"
               style={{
                 objectFit: "cover",
@@ -123,12 +132,13 @@ const Info = () => {
               style={{
                 fontWeight: 700,
                 textTransform: "capitalize",
-                whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
+                wordWrap: "break-word",
+                whiteSpace: "pre-wrap",
               }}
             >
-              Title
+              {currentProduct.title}
             </Typography>
             <Typography
               variant="subtitle-1"
@@ -136,26 +146,13 @@ const Info = () => {
               style={{
                 fontWeight: 700,
                 textTransform: "capitalize",
-                whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
+                wordWrap: "break-word",
+                whiteSpace: "pre-wrap",
               }}
             >
-              description
-            </Typography>
-            <Typography
-              variant="subtitle-1"
-              component="div"
-              style={{
-                fontWeight: 700,
-                textTransform: "capitalize",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                color: "blue",
-              }}
-            >
-              120 in stock
+              {currentProduct.description}
             </Typography>
             <Typography
               variant="h5"
@@ -164,7 +161,7 @@ const Info = () => {
                 fontWeight: 700,
               }}
             >
-              Rs 120
+              Rs {currentProduct.price}
             </Typography>
           </Grid>
         </Grid>
