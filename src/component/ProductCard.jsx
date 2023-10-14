@@ -15,7 +15,7 @@ const ProductCard = (props) => {
         margin: "auto",
         position: "relative",
         maxWidth: 450,
-        height: 450,
+        height: 550,
         backgroundColor: "#f2f5fc",
         borderRadius: "1rem",
         padding: "0.5rem",
@@ -32,10 +32,10 @@ const ProductCard = (props) => {
         image={props.image}
         alt="product"
         style={{
-          objectFit: "cover",
+          objectFit: "fill",
           width: "100%",
           borderRadius: "1rem",
-          height: "15rem",
+          height: "20rem",
           cursor: "pointer",
         }}
         onClick={() => {

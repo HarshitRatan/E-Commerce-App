@@ -108,7 +108,7 @@ const Info = () => {
               image={currentProduct.image}
               alt="car"
               style={{
-                objectFit: "cover",
+                objectFit: "fill",
                 width: "70%",
                 borderRadius: "1rem",
                 height: "15rem",
