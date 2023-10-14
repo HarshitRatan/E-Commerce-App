@@ -5,8 +5,10 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Stack, Divider, Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = (props) => {
+  const navigate = useNavigate();
   return (
     <Card
       sx={{
@@ -28,12 +30,16 @@ const ProductCard = (props) => {
       <CardMedia
         component="img"
         image={props.image}
-        alt="car"
+        alt="product"
         style={{
           objectFit: "cover",
           width: "100%",
           borderRadius: "1rem",
           height: "15rem",
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          navigate(`/info/${props.id}`);
         }}
       />
       <CardContent style={{ marginTop: "0.5rem" }}>
@@ -42,6 +48,10 @@ const ProductCard = (props) => {
           justifyContent="center"
           alignItems="flex-start"
           spacing={2}
+          sx={{ cursor: "pointer" }}
+          onClick={() => {
+            navigate(`/info/${props.id}`);
+          }}
         >
           <Typography
             variant="h5"
