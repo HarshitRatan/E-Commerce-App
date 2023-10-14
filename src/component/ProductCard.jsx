@@ -6,8 +6,11 @@ import Typography from "@mui/material/Typography";
 import { Stack, Divider, Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
+import { deleteProduct } from "../redux/slices/productSlice.js";
+import { useDispatch } from "react-redux";
 
 const ProductCard = (props) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
     <Card
@@ -134,6 +137,7 @@ const ProductCard = (props) => {
               padding: "0.5rem",
             }}
             startIcon={<DeleteIcon />}
+            onClick={() => dispatch(deleteProduct(props.id))}
           >
             Delete
           </Button>

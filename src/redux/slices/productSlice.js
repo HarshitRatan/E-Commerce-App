@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 
 const API_URL = "https://fakestoreapi.com/products";
 export const getAllProducts = createAsyncThunk("getAllProducts", async () => {
@@ -34,14 +34,18 @@ const productSlice = createSlice({
       return state;
     });
   },
-    reducers: {
-      addProduct(state, action) {
-        console.log("Add Product");
-      },
-      deleteProduct(state, action) {
-        console.log("Delete Product");
-      },
+  reducers: {
+    addProduct(state, action) {
+      console.log("Add Product");
     },
+    deleteProduct(state, action) {
+      const updatedProduct = current(state).data.filter(
+        (product) => product.id !== action.payload
+      );
+      state.data = updatedProduct;
+      return state;
+    },
+  },
 });
 
 export const { addProduct, deleteProduct } = productSlice.actions;

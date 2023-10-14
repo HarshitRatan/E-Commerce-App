@@ -9,16 +9,13 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllProducts } from "../redux/slices/productSlice.js";
+import { addProduct } from "../redux/slices/productSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
   const [sortByPriceValue, setSortByPriceValue] = React.useState(0);
   const allProduct = useSelector((state) => state.allProducts);
 
-  React.useLayoutEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
   React.useEffect(() => {
     console.log("allProduct :: ", allProduct);
   }, [allProduct]);
@@ -82,6 +79,7 @@ const Home = () => {
           <Button
             sx={{ fontWeight: "600", width: 250, height: 50 }}
             variant="contained"
+            onClick={() => dispatch(addProduct())}
           >
             Add Product
           </Button>
