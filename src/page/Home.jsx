@@ -9,17 +9,25 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useSelector, useDispatch } from "react-redux";
-import { addProduct } from "../redux/slices/productSlice";
+import {
+  addProduct,
+  sortProductHighToLow,
+  sortProductLowToHigh,
+} from "../redux/slices/productSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
   const [sortByPriceValue, setSortByPriceValue] = React.useState(0);
   const allProduct = useSelector((state) => state.allProducts);
 
-  React.useEffect(() => {
-    console.log("allProduct :: ", allProduct);
-  }, [allProduct]);
-
+  const handleSortOptions = (value) => {
+    if (value === 1) {
+      dispatch(sortProductHighToLow());
+    } else if (value === 2) {
+      dispatch(sortProductLowToHigh());
+    }
+  };
+  console.log("allProduct ::: ", allProduct);
   return (
     <Box sx={{ marginTop: "25px", marginBottom: "50px" }}>
       <Grid
@@ -65,6 +73,7 @@ const Home = () => {
               value={sortByPriceValue}
               onChange={(e) => {
                 setSortByPriceValue(e.target.value);
+                handleSortOptions(e.target.value);
               }}
               sx={{ width: 250, height: 50 }}
             >

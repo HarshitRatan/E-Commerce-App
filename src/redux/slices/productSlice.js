@@ -45,8 +45,29 @@ const productSlice = createSlice({
       state.data = updatedProduct;
       return state;
     },
+    sortProductHighToLow(state, action) {
+      console.log("Sort High to low");
+      const x = current(state).data;
+      const y = [...x];
+      y.sort((a, b) => b.price - a.price);
+      state.data = y;
+      return state;
+    },
+    sortProductLowToHigh(state, action) {
+      console.log("Sort Low to High");
+      const x = current(state).data;
+      const y = [...x];
+      y.sort((a, b) => a.price - b.price);
+      state.data = y;
+      return state;
+    },
   },
 });
 
-export const { addProduct, deleteProduct } = productSlice.actions;
+export const {
+  addProduct,
+  deleteProduct,
+  sortProductHighToLow,
+  sortProductLowToHigh,
+} = productSlice.actions;
 export default productSlice.reducer;
