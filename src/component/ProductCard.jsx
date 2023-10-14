@@ -14,8 +14,8 @@ const ProductCard = (props) => {
       sx={{
         margin: "auto",
         position: "relative",
-        maxWidth: 400,
-        maxHeight: 480,
+        maxWidth: 450,
+        height: 450,
         backgroundColor: "#f2f5fc",
         borderRadius: "1rem",
         padding: "0.5rem",
@@ -59,25 +59,14 @@ const ProductCard = (props) => {
             style={{
               fontWeight: 700,
               textTransform: "capitalize",
-              whiteSpace: "nowrap",
+              display: "-webkit-box",
+              WebkitBoxOrient: "vertical",
+              WebkitLineClamp: "2",
               overflow: "hidden",
               textOverflow: "ellipsis",
             }}
           >
             {props.title}
-          </Typography>
-          <Typography
-            variant="subtitle-1"
-            component="div"
-            style={{
-              fontWeight: 700,
-              textTransform: "capitalize",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-          >
-            {props.description}
           </Typography>
 
           <Stack
@@ -95,7 +84,6 @@ const ProductCard = (props) => {
                 textTransform: "capitalize",
                 whiteSpace: "nowrap",
                 overflow: "hidden",
-                textOverflow: "ellipsis",
                 color: "blue",
               }}
             >
