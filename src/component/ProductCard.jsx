@@ -24,11 +24,15 @@ const ProductCard = (props) => {
         backgroundColor: "#ffffff",
         borderRadius: "1rem",
         padding: "0.5rem",
+        transition: "all ease 0.5s",
         boxShadow:
           "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
         ":hover": {
           backgroundImage:
             "linear-gradient(to top, #cfd9df70 0%, #e2ebf000 100%)",
+          "& .child-Image": {
+            scale: "1.2",
+          },
         },
       }}
     >
@@ -36,13 +40,15 @@ const ProductCard = (props) => {
         component="img"
         image={props.image}
         alt="product"
-        style={{
+        sx={{
           objectFit: "fill",
           width: "100%",
           borderRadius: "1rem",
           height: "20rem",
           cursor: "pointer",
+          transition: "all ease 0.5s",
         }}
+        className="child-Image"
         onClick={() => {
           navigate(`/info/${props.id}`);
         }}

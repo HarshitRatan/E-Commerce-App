@@ -71,7 +71,7 @@ const Info = () => {
       </Grid>
       <Container
         sx={{
-          // border: "2px solid red",
+          borderRadius: "0.8rem",
           padding: "2rem",
           backgroundColor: "white",
           boxShadow:
@@ -111,11 +111,16 @@ const Info = () => {
               component="img"
               image={currentProduct?.image}
               alt="car"
-              style={{
+              sx={{
                 objectFit: "fill",
-                width: "100%",
+                width: "80%",
                 borderRadius: "1rem",
                 height: "30rem",
+                transition: "all ease 0.5s",
+                cursor: "pointer",
+                ":hover": {
+                  scale: "1.1",
+                },
               }}
             />
           </Grid>
