@@ -8,24 +8,34 @@ import Button from "@mui/material/Button";
 import { addProduct } from "../redux/slices/productSlice";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const AddProductModal = ({ open, setOpen }) => {
-  const { values, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues: {
-      image: "",
-      title: "",
-      description: "",
-      price: "",
-      category: "default",
-      rating: {
-        count: 120,
-        rate: 4.1,
-      },
-    },
-    onSubmit: (value) => {
-      dispatch(addProduct(value));
-    },
+  const validation = Yup.object({
+    image: Yup.string().url("Invalid URL").required("Image URL is required"),
+    title: Yup.string().required("Heading is Required *"),
+    description: Yup.string().required("Description is Required *"),
+    price: Yup.number().min(1).required("Price is Required *"),
   });
+  const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        image: "",
+        title: "",
+        description: "",
+        price: "",
+        category: "default",
+        rating: {
+          count: 120,
+          rate: 4.1,
+        },
+      },
+      validationSchema: validation,
+      onSubmit: (value) => {
+        dispatch(addProduct(value));
+        console.log("error :: ", errors);
+      },
+    });
   const dispatch = useDispatch();
   const handleClose = () => setOpen(false);
   const style = {
@@ -62,6 +72,15 @@ const AddProductModal = ({ open, setOpen }) => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
+        {touched.image && errors.image && (
+          <Typography
+            variant="subtitle1"
+            component="h2"
+            sx={{ fontWeight: 400, color: "red" }}
+          >
+            {errors.image}
+          </Typography>
+        )}
         <InputTextField
           name="title"
           label="Heading"
@@ -69,6 +88,15 @@ const AddProductModal = ({ open, setOpen }) => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
+        {touched.title && errors.title && (
+          <Typography
+            variant="subtitle1"
+            component="h2"
+            sx={{ fontWeight: 400, color: "red" }}
+          >
+            {errors.title}
+          </Typography>
+        )}
         <InputTextField
           name="description"
           label="Description"
@@ -76,6 +104,15 @@ const AddProductModal = ({ open, setOpen }) => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
+        {touched.description && errors.description && (
+          <Typography
+            variant="subtitle1"
+            component="h2"
+            sx={{ fontWeight: 400, color: "red" }}
+          >
+            {errors.description}
+          </Typography>
+        )}
         <InputTextField
           name="price"
           label="Price"
@@ -83,12 +120,21 @@ const AddProductModal = ({ open, setOpen }) => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
+        {touched.price && errors.price && (
+          <Typography
+            variant="subtitle1"
+            component="h2"
+            sx={{ fontWeight: 400, color: "red" }}
+          >
+            {errors.price}
+          </Typography>
+        )}
         <Stack
           direction="row"
           justifyContent="space-between"
           alignItems="center"
           spacing={2}
-          sx={{ width: "100%" }}
+          sx={{ width: "100%", marginTop: 2 }}
         >
           <Button
             sx={{ fontWeight: "600", width: 150, height: 50 }}
@@ -102,6 +148,7 @@ const AddProductModal = ({ open, setOpen }) => {
             sx={{ fontWeight: "600", width: 150, height: 50 }}
             variant="contained"
             onClick={() => {
+              console.log("error :: ", errors);
               handleSubmit();
             }}
           >
