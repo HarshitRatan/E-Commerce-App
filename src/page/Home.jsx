@@ -20,15 +20,14 @@ const Home = () => {
   const [sortByPriceValue, setSortByPriceValue] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const allProduct = useSelector((state) => state.allProducts);
-
-  const handleSortOptions = (value) => {
-    if (value === 1) {
+  
+  React.useEffect(() => {
+    if (sortByPriceValue === 1) {
       dispatch(sortProductHighToLow());
-    } else if (value === 2) {
+    } else if (sortByPriceValue === 2) {
       dispatch(sortProductLowToHigh());
     }
-  };
-  console.log("allProduct ::: ", allProduct);
+  }, [sortByPriceValue, dispatch]);
   return (
     <Box sx={{ marginTop: "25px", marginBottom: "50px" }}>
       <Grid
@@ -74,7 +73,6 @@ const Home = () => {
               value={sortByPriceValue}
               onChange={(e) => {
                 setSortByPriceValue(e.target.value);
-                handleSortOptions(e.target.value);
               }}
               sx={{ width: 250, height: 50 }}
             >
@@ -111,7 +109,7 @@ const Home = () => {
       {!allProduct.isLoading && allProduct.data.length > 0 && (
         <Grid container spacing={2} mb={2}>
           {allProduct.data.map((value, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4}>
+            <Grid item key={index} xs={12} sm={6} md={4} lg={3} xl={2}>
               <ProductCard {...value} />
             </Grid>
           ))}
@@ -136,9 +134,7 @@ const Home = () => {
           >
             <Box> No Product Found Please Add Some Products</Box>
             <Box> or</Box>
-            <Box>
-              Connect To Internet And Refresh The Page.
-            </Box>
+            <Box>Connect To Internet And Refresh The Page.</Box>
           </Box>
         </Box>
       )}

@@ -49,7 +49,6 @@ const productSlice = createSlice({
       return state;
     },
     sortProductHighToLow(state, action) {
-      console.log("Sort High to low");
       const x = current(state).data;
       const y = [...x];
       y.sort((a, b) => b.price - a.price);
@@ -57,7 +56,6 @@ const productSlice = createSlice({
       return state;
     },
     sortProductLowToHigh(state, action) {
-      console.log("Sort Low to High");
       const x = current(state).data;
       const y = [...x];
       y.sort((a, b) => a.price - b.price);

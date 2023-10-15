@@ -186,7 +186,7 @@ const AddProductModal = ({ open, setOpen }) => {
               setTimeout(() => {
                 handleSubmit();
                 setLoadingAnimation(false);
-              }, [500]);
+              }, [250]);
             }}
           >
             Add Product

@@ -8,17 +8,19 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 import { deleteProduct } from "../redux/slices/productSlice.js";
 import { useDispatch } from "react-redux";
+import PublishedWithChangesIcon from "@mui/icons-material/PublishedWithChanges";
 
 const ProductCard = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loadingAnimation, setLoadingAnimation] = React.useState(false);
   return (
     <Card
       sx={{
         margin: "auto",
         position: "relative",
-        maxWidth: 450,
-        height: 480,
+        maxWidth: "20rem",
+        height: "34rem",
         backgroundColor: "#f2f5fc",
         borderRadius: "1rem",
         padding: "0.5rem",
@@ -51,13 +53,13 @@ const ProductCard = (props) => {
           justifyContent="center"
           alignItems="flex-start"
           spacing={2}
-          sx={{ cursor: "pointer" }}
+          sx={{ cursor: "pointer", height: "6rem" }}
           onClick={() => {
             navigate(`/info/${props.id}`);
           }}
         >
           <Typography
-            variant="h5"
+            variant="h6"
             component="div"
             style={{
               fontWeight: 700,
@@ -136,8 +138,18 @@ const ProductCard = (props) => {
               height: "100%",
               padding: "0.5rem",
             }}
-            startIcon={<DeleteIcon />}
-            onClick={() => dispatch(deleteProduct(props.id))}
+            // startIcon={<DeleteIcon />}
+            disabled={loadingAnimation}
+            startIcon={
+              loadingAnimation ? <PublishedWithChangesIcon /> : <DeleteIcon />
+            }
+            onClick={() => {
+              setLoadingAnimation(true);
+              setTimeout(() => {
+                dispatch(deleteProduct(props.id));
+                setLoadingAnimation(false);
+              }, [250]);
+            }}
           >
             Delete
           </Button>
