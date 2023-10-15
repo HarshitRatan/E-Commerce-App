@@ -16,6 +16,9 @@ const AddProductModal = ({ open, setOpen }) => {
     title: Yup.string().required("Heading is Required *"),
     description: Yup.string().required("Description is Required *"),
     price: Yup.number().min(1).required("Price is Required *"),
+    rating: Yup.object({
+      count: Yup.number().required("Stock is Required *"),
+    }),
   });
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
@@ -26,14 +29,13 @@ const AddProductModal = ({ open, setOpen }) => {
         price: "",
         category: "default",
         rating: {
-          count: 120,
+          count: 100,
           rate: 4.1,
         },
       },
       validationSchema: validation,
       onSubmit: (value) => {
         dispatch(addProduct(value));
-        console.log("error :: ", errors);
       },
     });
   const dispatch = useDispatch();
@@ -72,13 +74,13 @@ const AddProductModal = ({ open, setOpen }) => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        {touched.image && errors.image && (
+        {touched?.image && errors?.image && (
           <Typography
             variant="subtitle1"
             component="h2"
             sx={{ fontWeight: 400, color: "red" }}
           >
-            {errors.image}
+            {errors?.image}
           </Typography>
         )}
         <InputTextField
@@ -88,13 +90,13 @@ const AddProductModal = ({ open, setOpen }) => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        {touched.title && errors.title && (
+        {touched?.title && errors?.title && (
           <Typography
             variant="subtitle1"
             component="h2"
             sx={{ fontWeight: 400, color: "red" }}
           >
-            {errors.title}
+            {errors?.title}
           </Typography>
         )}
         <InputTextField
@@ -104,13 +106,13 @@ const AddProductModal = ({ open, setOpen }) => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        {touched.description && errors.description && (
+        {touched?.description && errors?.description && (
           <Typography
             variant="subtitle1"
             component="h2"
             sx={{ fontWeight: 400, color: "red" }}
           >
-            {errors.description}
+            {errors?.description}
           </Typography>
         )}
         <InputTextField
@@ -120,13 +122,29 @@ const AddProductModal = ({ open, setOpen }) => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        {touched.price && errors.price && (
+        {touched?.price && errors?.price && (
           <Typography
             variant="subtitle1"
             component="h2"
             sx={{ fontWeight: 400, color: "red" }}
           >
-            {errors.price}
+            {errors?.price}
+          </Typography>
+        )}
+        <InputTextField
+          name="rating.count"
+          label="In Stock"
+          value={values.rating.count}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {touched?.rating?.count && errors?.rating?.count && (
+          <Typography
+            variant="subtitle1"
+            component="h2"
+            sx={{ fontWeight: 400, color: "red" }}
+          >
+            {errors?.rating?.count}
           </Typography>
         )}
         <Stack
@@ -148,7 +166,7 @@ const AddProductModal = ({ open, setOpen }) => {
             sx={{ fontWeight: "600", width: 150, height: 50 }}
             variant="contained"
             onClick={() => {
-              console.log("error :: ", errors);
+              console.log("errors :: ", errors);
               handleSubmit();
             }}
           >

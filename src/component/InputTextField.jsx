@@ -10,6 +10,7 @@ const InputTextField = ({ label, name, value, onChange, onBlur }) => {
         {label}
       </Typography>
       <TextField
+        type={name === "price" || name === "rating.count" ? "number" : "text"}
         fullWidth
         name={name}
         value={value}
