@@ -10,14 +10,15 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  addProduct,
   sortProductHighToLow,
   sortProductLowToHigh,
 } from "../redux/slices/productSlice";
+import AddProductModal from "../component/AddProductModal";
 
 const Home = () => {
   const dispatch = useDispatch();
   const [sortByPriceValue, setSortByPriceValue] = React.useState(0);
+  const [open, setOpen] = React.useState(false);
   const allProduct = useSelector((state) => state.allProducts);
 
   const handleSortOptions = (value) => {
@@ -88,7 +89,7 @@ const Home = () => {
           <Button
             sx={{ fontWeight: "600", width: 250, height: 50 }}
             variant="contained"
-            onClick={() => dispatch(addProduct())}
+            onClick={() => setOpen(true)}
           >
             Add Product
           </Button>
@@ -128,6 +129,7 @@ const Home = () => {
           No Product Found Please Add Some Product.
         </Box>
       )}
+      <AddProductModal open={open} setOpen={setOpen} />
     </Box>
   );
 };

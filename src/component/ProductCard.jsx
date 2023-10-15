@@ -18,7 +18,7 @@ const ProductCard = (props) => {
         margin: "auto",
         position: "relative",
         maxWidth: 450,
-        height: 550,
+        height: 480,
         backgroundColor: "#f2f5fc",
         borderRadius: "1rem",
         padding: "0.5rem",
