@@ -20,7 +20,7 @@ const Home = () => {
   const [sortByPriceValue, setSortByPriceValue] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const allProduct = useSelector((state) => state.allProducts);
-  
+
   React.useEffect(() => {
     if (sortByPriceValue === 1) {
       dispatch(sortProductHighToLow());
@@ -37,9 +37,6 @@ const Home = () => {
           borderRadius: "1rem",
           padding: "1rem",
           marginBottom: "2.5rem",
-          backgroundColor: "#eaeff4",
-          boxShadow:
-            "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
         }}
       >
         <Grid item sm={12} md={6}>

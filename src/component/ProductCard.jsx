@@ -21,14 +21,14 @@ const ProductCard = (props) => {
         position: "relative",
         maxWidth: "20rem",
         height: "34rem",
-        backgroundColor: "#f2f5fc",
+        backgroundColor: "#ffffff",
         borderRadius: "1rem",
         padding: "0.5rem",
-        transition: "all ease 1s",
         boxShadow:
           "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
         ":hover": {
-          backgroundColor: "#f3f6fd",
+          backgroundImage:
+            "linear-gradient(to top, #cfd9df70 0%, #e2ebf000 100%)",
         },
       }}
     >

@@ -32,9 +32,6 @@ const Info = () => {
           borderRadius: "1rem",
           padding: "1rem",
           marginBottom: "2.5rem",
-          backgroundColor: "#eaeff4",
-          boxShadow:
-            "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
         }}
       >
         <Grid item sm={12} md={6}>
@@ -72,7 +69,15 @@ const Info = () => {
           </Button>
         </Grid>
       </Grid>
-      <Container>
+      <Container
+        sx={{
+          // border: "2px solid red",
+          padding: "2rem",
+          backgroundColor: "white",
+          boxShadow:
+            "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+        }}
+      >
         <Box>
           <Typography
             variant="h4"
@@ -80,7 +85,6 @@ const Info = () => {
             style={{
               fontWeight: 800,
               textTransform: "capitalize",
-              marginTop: 10,
               marginBottom: 50,
               display: "flex",
               justifyContent: "center",
@@ -109,9 +113,9 @@ const Info = () => {
               alt="car"
               style={{
                 objectFit: "fill",
-                width: "70%",
+                width: "100%",
                 borderRadius: "1rem",
-                height: "15rem",
+                height: "30rem",
               }}
             />
           </Grid>
@@ -127,7 +131,7 @@ const Info = () => {
             }}
           >
             <Typography
-              variant="h5"
+              variant="h4"
               component="div"
               style={{
                 fontWeight: 700,
@@ -141,7 +145,7 @@ const Info = () => {
               {currentProduct?.title}
             </Typography>
             <Typography
-              variant="subtitle-1"
+              variant="body-1"
               component="div"
               style={{
                 fontWeight: 700,
@@ -162,7 +166,7 @@ const Info = () => {
               sx={{ width: "100%" }}
             >
               <Typography
-                variant="subtitle-1"
+                variant="h6"
                 component="div"
                 style={{
                   fontWeight: 700,
@@ -175,7 +179,7 @@ const Info = () => {
                 {currentProduct?.rating?.count} in stock
               </Typography>
               <Typography
-                variant="subtitle-1"
+                variant="h6"
                 component="div"
                 style={{
                   fontWeight: 700,
