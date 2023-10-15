@@ -9,8 +9,10 @@ import { addProduct } from "../redux/slices/productSlice";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import PublishedWithChangesIcon from "@mui/icons-material/PublishedWithChanges";
 
 const AddProductModal = ({ open, setOpen }) => {
+  const [loadingAnimation, setLoadingAnimation] = React.useState(false);
   const validation = Yup.object({
     image: Yup.string().url("Invalid URL").required("Image URL is required"),
     title: Yup.string().required("Heading is Required *"),
@@ -165,10 +167,16 @@ const AddProductModal = ({ open, setOpen }) => {
             Close
           </Button>
           <Button
-            sx={{ fontWeight: "600", width: 150, height: 50 }}
+            disabled={loadingAnimation}
+            startIcon={loadingAnimation ? <PublishedWithChangesIcon /> : ""}
+            sx={{ fontWeight: "600", width: 170, height: 50 }}
             variant="contained"
             onClick={() => {
-              handleSubmit();
+              setLoadingAnimation(true);
+              setTimeout(() => {
+                handleSubmit();
+                setLoadingAnimation(false);
+              }, [500]);
             }}
           >
             Add Product

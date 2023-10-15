@@ -105,7 +105,7 @@ const Info = () => {
           >
             <CardMedia
               component="img"
-              image={currentProduct.image}
+              image={currentProduct?.image}
               alt="car"
               style={{
                 objectFit: "fill",
@@ -138,7 +138,7 @@ const Info = () => {
                 whiteSpace: "pre-wrap",
               }}
             >
-              {currentProduct.title}
+              {currentProduct?.title}
             </Typography>
             <Typography
               variant="subtitle-1"
@@ -152,7 +152,7 @@ const Info = () => {
                 whiteSpace: "pre-wrap",
               }}
             >
-              {currentProduct.description}
+              {currentProduct?.description}
             </Typography>
             <Stack
               direction="row"
@@ -172,7 +172,7 @@ const Info = () => {
                   color: "blue",
                 }}
               >
-                {currentProduct.rating.count} in stock
+                {currentProduct?.rating?.count} in stock
               </Typography>
               <Typography
                 variant="subtitle-1"
@@ -186,7 +186,7 @@ const Info = () => {
                   color: "green",
                 }}
               >
-                {currentProduct.rating.rate} out of 5
+                {currentProduct?.rating?.rate} out of 5
               </Typography>
             </Stack>
             <Typography
