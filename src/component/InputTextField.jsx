@@ -11,6 +11,7 @@ const InputTextField = ({ label, name, value, onChange, onBlur }) => {
       </Typography>
       <TextField
         type={name === "price" || name === "rating.count" ? "number" : "text"}
+        multiline={name === "description" ? true : false}
         fullWidth
         name={name}
         value={value}
