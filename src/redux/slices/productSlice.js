@@ -36,7 +36,10 @@ const productSlice = createSlice({
   },
   reducers: {
     addProduct(state, action) {
-      console.log("Add Product");
+      const id = state.data.length + 1;
+      const newProduct = { id, ...action.payload };
+      state.data = [newProduct, ...current(state).data];
+      return state;
     },
     deleteProduct(state, action) {
       const updatedProduct = current(state).data.filter(

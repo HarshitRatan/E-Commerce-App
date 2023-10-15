@@ -7,8 +7,25 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { addProduct } from "../redux/slices/productSlice";
 import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
 
 const AddProductModal = ({ open, setOpen }) => {
+  const { values, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      image: "",
+      title: "",
+      description: "",
+      price: "",
+      category: "default",
+      rating: {
+        count: 120,
+        rate: 4.1,
+      },
+    },
+    onSubmit: (value) => {
+      dispatch(addProduct(value));
+    },
+  });
   const dispatch = useDispatch();
   const handleClose = () => setOpen(false);
   const style = {
@@ -38,10 +55,34 @@ const AddProductModal = ({ open, setOpen }) => {
         >
           Add Product
         </Typography>
-        <InputTextField label="Image URL" />
-        <InputTextField label="Heading" />
-        <InputTextField label="Description" />
-        <InputTextField label="Price" />
+        <InputTextField
+          name="image"
+          label="Image URL"
+          value={values.image}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <InputTextField
+          name="title"
+          label="Heading"
+          value={values.title}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <InputTextField
+          name="description"
+          label="Description"
+          value={values.description}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <InputTextField
+          name="price"
+          label="Price"
+          value={values.price}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -61,7 +102,7 @@ const AddProductModal = ({ open, setOpen }) => {
             sx={{ fontWeight: "600", width: 150, height: 50 }}
             variant="contained"
             onClick={() => {
-              dispatch(addProduct());
+              handleSubmit();
             }}
           >
             Add Product

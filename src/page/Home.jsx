@@ -126,7 +126,20 @@ const Home = () => {
             marginBottom: 100,
           }}
         >
-          No Product Found Please Add Some Product.
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Box> No Product Found Please Add Some Products</Box>
+            <Box> or</Box>
+            <Box>
+              Connect To Internet And Refresh The Page.
+            </Box>
+          </Box>
         </Box>
       )}
       <AddProductModal open={open} setOpen={setOpen} />
