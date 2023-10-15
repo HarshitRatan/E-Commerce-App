@@ -49,17 +49,23 @@ const productSlice = createSlice({
       return state;
     },
     sortProductHighToLow(state, action) {
-      const x = current(state).data;
-      const y = [...x];
-      y.sort((a, b) => b.price - a.price);
-      state.data = y;
+      const currentProductArray = current(state).data;
+      const preSortCurrentArray = [...currentProductArray];
+      preSortCurrentArray.sort(
+        (firstProduct, secondProduct) =>
+          secondProduct.price - firstProduct.price
+      );
+      state.data = preSortCurrentArray;
       return state;
     },
     sortProductLowToHigh(state, action) {
-      const x = current(state).data;
-      const y = [...x];
-      y.sort((a, b) => a.price - b.price);
-      state.data = y;
+      const currentProductArray = current(state).data;
+      const preSortCurrentArray = [...currentProductArray];
+      preSortCurrentArray.sort(
+        (firstProduct, secondProduct) =>
+          firstProduct.price - secondProduct.price
+      );
+      state.data = preSortCurrentArray;
       return state;
     },
   },
