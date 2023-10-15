@@ -62,6 +62,7 @@ const AddProductModal = ({ open, setOpen }) => {
     width: "30rem",
     height: "40rem",
     overflow: "scroll",
+    overflowX: "hidden",
     bgcolor: "white",
     boxShadow: 24,
     p: 4,
