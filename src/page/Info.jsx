@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
-import { Container } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import { useSelector } from "react-redux";
 
@@ -154,6 +154,41 @@ const Info = () => {
             >
               {currentProduct.description}
             </Typography>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              spacing={2}
+              sx={{ width: "100%" }}
+            >
+              <Typography
+                variant="subtitle-1"
+                component="div"
+                style={{
+                  fontWeight: 700,
+                  textTransform: "capitalize",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  color: "blue",
+                }}
+              >
+                {currentProduct.rating.count} in stock
+              </Typography>
+              <Typography
+                variant="subtitle-1"
+                component="div"
+                style={{
+                  fontWeight: 700,
+                  textTransform: "capitalize",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  color: "green",
+                }}
+              >
+                {currentProduct.rating.rate} out of 5
+              </Typography>
+            </Stack>
             <Typography
               variant="h5"
               component="div"

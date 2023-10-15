@@ -37,6 +37,7 @@ const AddProductModal = ({ open, setOpen }) => {
       onSubmit: (value, action) => {
         dispatch(addProduct(value));
         action.resetForm();
+        handleClose();
       },
     });
   const dispatch = useDispatch();
