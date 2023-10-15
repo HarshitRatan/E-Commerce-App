@@ -34,8 +34,9 @@ const AddProductModal = ({ open, setOpen }) => {
         },
       },
       validationSchema: validation,
-      onSubmit: (value) => {
+      onSubmit: (value, action) => {
         dispatch(addProduct(value));
+        action.resetForm();
       },
     });
   const dispatch = useDispatch();
@@ -166,7 +167,6 @@ const AddProductModal = ({ open, setOpen }) => {
             sx={{ fontWeight: "600", width: 150, height: 50 }}
             variant="contained"
             onClick={() => {
-              console.log("errors :: ", errors);
               handleSubmit();
             }}
           >
