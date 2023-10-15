@@ -106,7 +106,7 @@ const Home = () => {
       {!allProduct.isLoading && allProduct.data.length > 0 && (
         <Grid container spacing={2} mb={2}>
           {allProduct.data.map((value, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4} lg={3} xl={2}>
+            <Grid item key={index} xs={6} sm={6} md={4} lg={3} xl={2}>
               <ProductCard {...value} />
             </Grid>
           ))}

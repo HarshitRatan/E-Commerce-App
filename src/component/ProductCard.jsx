@@ -128,10 +128,11 @@ const ProductCard = (props) => {
             variant="h5"
             component="div"
             style={{
-              fontWeight: 700,
+              fontWeight: 1000,
+              fontSize: "1.2rem",
             }}
           >
-            Rs {props.price}
+            ₹{props.price}
           </Typography>
 
           <Button
