@@ -22,28 +22,38 @@ const AddProductModal = ({ open, setOpen }) => {
       count: Yup.number().required("Stock is Required *"),
     }),
   });
-  const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: {
-        image: "",
-        title: "",
-        description: "",
-        price: "",
-        category: "default",
-        rating: {
-          count: 100,
-          rate: 4.1,
-        },
+  const {
+    values,
+    errors,
+    handleBlur,
+    touched,
+    handleChange,
+    handleSubmit,
+    handleReset,
+  } = useFormik({
+    initialValues: {
+      image: "",
+      title: "",
+      description: "",
+      price: "",
+      category: "default",
+      rating: {
+        count: 100,
+        rate: 4.1,
       },
-      validationSchema: validation,
-      onSubmit: (value, action) => {
-        dispatch(addProduct(value));
-        action.resetForm();
-        handleClose();
-      },
-    });
+    },
+    validationSchema: validation,
+    onSubmit: (value, action) => {
+      dispatch(addProduct(value));
+      handleClose();
+      action.resetForm();
+    },
+  });
   const dispatch = useDispatch();
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    handleReset();
+  };
   const style = {
     position: "absolute",
     top: "50%",
@@ -162,7 +172,7 @@ const AddProductModal = ({ open, setOpen }) => {
             sx={{ fontWeight: "600", width: 150, height: 50 }}
             variant="contained"
             color="error"
-            onClick={() => setOpen(false)}
+            onClick={() => handleClose()}
           >
             Close
           </Button>
