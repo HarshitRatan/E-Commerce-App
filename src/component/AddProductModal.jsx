@@ -60,6 +60,8 @@ const AddProductModal = ({ open, setOpen }) => {
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: "30rem",
+    height: "40rem",
+    overflow: "scroll",
     bgcolor: "white",
     boxShadow: 24,
     p: 4,
