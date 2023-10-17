@@ -45,7 +45,7 @@ const Info = () => {
               textTransform: "capitalize",
             }}
           >
-            Optimite E-Commerce App
+           Ratan E-Commerce App
           </Typography>
         </Grid>
         <Grid
