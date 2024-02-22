@@ -1,5 +1,5 @@
 ### `Click Here For Live Demo : `
-https://ratanecomapp.vercel.app
+https://ratan-e-commerce-app.vercel.app/
 
 ### `Prerequisite`
 
