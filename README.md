@@ -1,5 +1,5 @@
 ### `Click Here For Live Demo : `
-https://ratanecomapp.netlify.app/
+https://ratanecomapp.vercel.app
 
 ### `Prerequisite`
 
